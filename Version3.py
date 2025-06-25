@@ -104,10 +104,12 @@ stops = {'right': [580,580,580],
         'left': [810,810,810],
         'up': [545,545,545]}
 
-mid = {'right': {'x':705, 'y':445},
-       'down': {'x':695, 'y':450},
-       'left': {'x':695, 'y':425},
-       'up': {'x':695, 'y':400}}
+mid = {
+    'right': {'x': 657, 'y': 445},   # inchangé
+    'down':  {'x': 620, 'y': 500},   # x DIMINUÉ (vers la gauche)
+    'left':  {'x': 740, 'y': 445},   # inchangé
+    'up':    {'x': 690, 'y': 390}    # x AUGMENTÉ (vers la droite)
+}
 
 rotationAngle = 3
 

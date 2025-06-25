@@ -329,6 +329,8 @@ def setTime():
     # greenTime = len(vehicles[currentGreen][0])+len(vehicles[currentGreen][1])+len(vehicles[currentGreen][2])
     # noOfVehicles = len(vehicles[directionNumbers[nextGreen]][1])+len(vehicles[directionNumbers[nextGreen]][2])-vehicles[directionNumbers[nextGreen]]['crossed']
     # print("no. of vehicles = ",noOfVehicles)
+    
+    # detection_result = detection(currentGreen)
     noOfCars, noOfBuses, noOfTrucks, noOfRickshaws, noOfBikes = 0,0,0,0,0
     for j in range(len(vehicles[directionNumbers[nextGreen]][0])):
         vehicle = vehicles[directionNumbers[nextGreen]][0][j]
