@@ -30,6 +30,7 @@ Total vehicles passed:  81
 Total time passed:  100
 No. of vehicles passed per unit time:  0.81
 `
+5- ajouter les résultats de sumilation dans un fichier .csv.
 '''
 
 import random
@@ -40,6 +41,8 @@ import threading
 import pygame
 import sys
 import os
+
+import csv
 
 defaultRed = 150
 defaultYellow = 5
@@ -447,6 +450,24 @@ def simulationTime():
             print('Total time passed: ',timeElapsed)
             print('No. of vehicles passed per unit time: ',(float(totalVehicles)/float(timeElapsed)))
             os._exit(1)
+
+def enregistrer_resultats(code_formule, temp_simulation, nombre_vehicule, nom_fichier='resultats.csv'):
+    # Vérifie si le fichier existe déjà pour l'en-tête
+    try:
+        with open(nom_fichier, 'r', encoding='utf-8') as f:
+            existe = True
+    except FileNotFoundError:
+        existe = False
+
+    with open(nom_fichier, mode='a', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=['code de formule', 'temp de simulation', 'nombre de véhicule'])
+        if not existe:
+            writer.writeheader()
+        writer.writerow({
+            'code de formule': code_formule,
+            'temp de simulation': temp_simulation,
+            'nombre de véhicule': nombre_vehicule
+        })
 
 def ask_green_time_mode():
     print("Choisissez le mode de calcul du temps vert :")
