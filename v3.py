@@ -1,36 +1,6 @@
 simTime = 100
 '''
-1-Changer le valeur `simTime` selon le choix.
-2- Inverser les valeurs de `x` et `y`: 
-x['up'] <=> x['down']
-y['right'] <=> y ['left'].
-3- `signalCoods`, `signalTimerCoods`, `vehicleCountCoods` changer l'ordre des tuples, met le dernier en premier.
-4- On ajouter un condition pour choisir le valeur de feux vert, si on prend la valeur par défault ou bien selon la formule,
-ça aide à evalualer la simulation et faire une comparaison,
-par example : 
-par défault : 
-`
-Lane-wise Vehicle Counts
-Lane 1 : 5
-Lane 2 : 22
-Lane 3 : 4
-Lane 4 : 9
-Total vehicles passed:  40
-Total time passed:  100
-No. of vehicles passed per unit time:  0.4
-`
-par la formule :
-`
-Lane-wise Vehicle Counts
-Lane 1 : 40
-Lane 2 : 28
-Lane 3 : 4
-Lane 4 : 9
-Total vehicles passed:  81
-Total time passed:  100
-No. of vehicles passed per unit time:  0.81
-`
-5- ajouter les résultats de sumilation dans un fichier .csv.
+5- enregistrer les résultats du simulation dans un fichier (.csv)
 '''
 
 import random
@@ -41,8 +11,6 @@ import threading
 import pygame
 import sys
 import os
-
-import csv
 
 defaultRed = 150
 defaultYellow = 5
@@ -449,25 +417,18 @@ def simulationTime():
             print('Total vehicles passed: ',totalVehicles)
             print('Total time passed: ',timeElapsed)
             print('No. of vehicles passed per unit time: ',(float(totalVehicles)/float(timeElapsed)))
+            import csv 
+            # Sauvegarde dans le CSV
+            with open('simulation_resultats.csv', mode='a', newline='', encoding='utf-8') as fichier_csv:
+                writer = csv.DictWriter(fichier_csv, fieldnames=['green_time_mode', 'timeElapsed', 'totalVehicles'])
+                if fichier_csv.tell() == 0:
+                    writer.writeheader()
+                writer.writerow({
+                    'green_time_mode': green_time_mode,
+                    'timeElapsed': timeElapsed,
+                    'totalVehicles': totalVehicles
+                })
             os._exit(1)
-
-def enregistrer_resultats(code_formule, temp_simulation, nombre_vehicule, nom_fichier='resultats.csv'):
-    # Vérifie si le fichier existe déjà pour l'en-tête
-    try:
-        with open(nom_fichier, 'r', encoding='utf-8') as f:
-            existe = True
-    except FileNotFoundError:
-        existe = False
-
-    with open(nom_fichier, mode='a', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['code de formule', 'temp de simulation', 'nombre de véhicule'])
-        if not existe:
-            writer.writeheader()
-        writer.writerow({
-            'code de formule': code_formule,
-            'temp de simulation': temp_simulation,
-            'nombre de véhicule': nombre_vehicule
-        })
 
 def ask_green_time_mode():
     print("Choisissez le mode de calcul du temps vert :")
@@ -480,6 +441,7 @@ def ask_green_time_mode():
         return "default"
 # Demander à l'utilisateur le mode de calcul
 green_time_mode = ask_green_time_mode()
+
 
 class Main:
     thread4 = threading.Thread(name="simulationTime", target=simulationTime, args=()) 

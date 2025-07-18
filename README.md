@@ -3,7 +3,7 @@ Système Intelligent de Gestion de Trafic <br>
 Intelligent Traffic Management System `ITMS`
 </H1>
 
-update : 29/06/2025
+Last updated : 16/07/2025
 
 Pour les modules `Switching Signal Algorithm` et `Simulation`:
 [`ITMS : Github Repo Link`](https://github.com/Ha-lm31/ITMS.git)

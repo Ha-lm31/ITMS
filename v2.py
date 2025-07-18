@@ -1,10 +1,5 @@
 simTime = 100
 '''
-1-Changer le valeur `simTime` selon le choix.
-2- Inverser les valeurs de `x` et `y`: 
-x['up'] <=> x['down']
-y['right'] <=> y ['left'].
-3- `signalCoods`, `signalTimerCoods`, `vehicleCountCoods` changer l'ordre des tuples, met le dernier en premier.
 4- On ajouter un condition pour choisir le valeur de feux vert, si on prend la valeur par défault ou bien selon la formule,
 ça aide à evalualer la simulation et faire une comparaison,
 par example : 
